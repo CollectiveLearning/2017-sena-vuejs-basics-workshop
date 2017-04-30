@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vue.js Tutorial | Directives</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+<div id="app">
+  <ul>
+    <li v-for="person in persons">{{ person.name }}</li>
+  </ul>
+
+  <input type="text" v-model="person.name">
+  <button v-on:click="addPerson">Add person</button>
+</div>
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+
+<script>
+    new Vue ({
+        el: '#app',
+        data: {
+            person: {name: '', age: 30},
+            persons: [
+                {name: 'Max', age: 27},
+                {name: 'Steve', age: 55},
+                {name: 'Roger', age: 22}x
+            ]
+        },
+        methods: {
+            addPerson: function () {
+                this.persons.push(this.person);
+                this.person = {name: '', age: 30}
+            }
+        }
+    })
+</script>
+</html>

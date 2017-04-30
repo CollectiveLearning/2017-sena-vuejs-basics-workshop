@@ -1,0 +1,19 @@
+/*Alternating Row Colors in Bootstrap 3 - No Table*/
+.container-stripped {
+    width:80%;
+    margin:0 auto;
+}
+
+.container-stripped > .row {
+    line-height:24pt;
+    border: solid 1px darkgrey;
+}
+
+div.container-stripped > div:nth-of-type(even) {
+    background: #e0e0e0;
+}
+
+div.container-stripped > div:nth-of-type(1) {
+    background: #304b50;
+    color: white;
+}

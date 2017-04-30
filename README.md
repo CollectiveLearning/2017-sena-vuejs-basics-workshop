@@ -20,6 +20,8 @@ At the begining we are following the Official Vue Guetting Started Guide
   Assign a Vue instance to 'app' variable
   Set el, and data.message properties
 
+  using v-bind directive we can bind a function and modify a data property. i.e. look at reverse method.
+
   #### Prerequisites:
   Basic concepts of HTML, and JS
 

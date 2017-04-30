@@ -14,10 +14,10 @@
     <div id="app" class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-          <h1>Hello</h1>
+          <h1>Hello {{fullname}}</h1>
           <ul class="text-left">
-            <li>First Name:</li>
-            <li>Last Name:</li>
+            <li>First Name: {{first}}</li>
+            <li>Last Name: {{last}}</li>
           </ul>
             <hr />
         </div>
@@ -26,13 +26,13 @@
         <div class="col-md-6">
           <div class="form-group">
             <label>First Name:</label>
-            <input type="text" class="form-control"/>
+            <input type="text" class="form-control" v-model="first"/>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             <label>Last Name:</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" v-model="last" />
           </div>
         </div>
       </div>
@@ -43,7 +43,16 @@
 
   <script>
     var app = new Vue({
-      el: '#app'
+      el: '#app',
+      data: {
+        first: '',
+        last: ''
+      },
+      computed: {
+        fullname: function() {
+          return this.first + " " + this.last
+        }
+      }
     })
   </script>
 </html>

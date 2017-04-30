@@ -1,0 +1,23 @@
+{
+  "name": "vuejs-01-basics-worshop",
+  "version": "1.0.0",
+  "description": "_A Series to Learn Vue.js from the beginning. Covering basics and moving on up to larger projects. Concluding with a large scale that ties into a backend service.",
+  "main": "index.js",
+  "dependencies": {
+    "vue": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CollectiveLearning/2017-sena-vuejs-basics-workshop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CollectiveLearning/2017-sena-vuejs-basics-workshop/issues"
+  },
+  "homepage": "https://github.com/CollectiveLearning/2017-sena-vuejs-basics-workshop#readme"
+}

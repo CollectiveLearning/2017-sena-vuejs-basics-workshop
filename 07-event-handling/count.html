@@ -4,22 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Vue.js 2.0 Basics Workshop | Directives</title>
+    <title>Vue.js Tutorial | Directives</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <style>
-      [v-cloak] {
-        display: none;
-      }
-    </style>
   </head>
 
   <body>
     <div id="app">
-      <h1 v-cloak>{{ message }}</h1>
-      <!-- <h1 v-else>You have NOT viewed this page</h1> -->
+      <h1>Count: {{ count }}</h1>
+      <button @click="countUp" class="btn btn-primary">Count Up</button>
+      <button @click="countDown" class="btn btn-primary">Count Down</button>
     </div>
   </body>
 
@@ -30,9 +25,15 @@
       el: '#app',
       data: {
         message: 'Hello Vue World',
-        intro: "Welcome to the Tutorial <small>It is all about Vue.js</small>",
-        viewed: false,
-        viewed2: true
+        count: 0
+      },
+      methods: {
+        countUp: function() {
+          this.count += 1
+        },
+        countDown: function() {
+          this.count -= 1
+        }
       }
     })
   </script>
