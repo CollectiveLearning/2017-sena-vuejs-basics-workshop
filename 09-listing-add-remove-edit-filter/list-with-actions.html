@@ -99,10 +99,12 @@
                 this.students.splice(index, 1);
             },
             edit: function(index){
-                console.log('edit call ', index)
+                // only one register are edited at same time
+                this.students.forEach(function(student) {
+                   student.edit = false;
+                });
                 this.students[index].edit = true;
                 this.studentEdit = this.students[index];
-                this.studentEdit.edit = true;
             },
             editSave: function(index) {
                 console.log(index);
