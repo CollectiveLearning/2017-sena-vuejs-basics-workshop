@@ -22,12 +22,18 @@
     export default {
         data() {
             return {
-                user: {username: '', emai: ''}
+                user: {username: '', email: ''}
             }
         },
         methods: {
             submit(){
-                console.log('user', this.user)
+//                console.log('user', this.user)
+                this.$http.post('https://vuejs-tinyapp.firebaseio.com/users.json', this.user)
+                    .then( response => {
+                        console.log(response)
+                    }, error => {
+                        console.log(error)
+                    })
             }
         }
     }
