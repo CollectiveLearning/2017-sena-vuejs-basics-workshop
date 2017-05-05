@@ -5,11 +5,11 @@
             <!-- Default panel contents -->
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-2 text-right">Name:</div>
-                    <div class="col-md-3"><input type="text" v-model="student.name"></div>
-                    <div class="col-md-2 text-right">Last Name:</div>
-                    <div class="col-md-3"><input type="text" v-model="student.last_name"></div>
-                    <div class="col-md-2">
+                    <div class="col-lg-2 col-xs-6">Name:</div>
+                    <div class="col-lg-3 col-xs-6"><input type="text" v-model="student.name"></div>
+                    <div class="col-lg-2 col-xs-6">Last Name:</div>
+                    <div class="col-lg-3 col-xs-6"><input type="text" v-model="student.last_name"></div>
+                    <div class="col-lg-2 col-xs-6">
                         <button type="button" class="btn btn-default btn-sm" v-on:click="create">
                             <span class="glyphicon glyphicon-user">Add </span>
                         </button>
@@ -20,40 +20,40 @@
         <div class="container-stripped">
             <!--Header-->
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-lg-3 col-xs-2">
                     ID
                 </div>
-                <div class="col-md-3">
+                <div class="col-lg-3 col-xs-5">
                     NAME
                 </div>
-                <div class="col-md-3">
+                <div class="col-lg-3 col-xs-5">
                     LAST NAME
                 </div>
-                <div class="col-md-3">
+                <div class="col-lg-3 col-xs-12">
                     ACTIONS
                 </div>
             </div>
 
             <!--List-->
             <div class="row" v-for="(student, index) in students">
-                <div class="col-md-3">
+                <div class="col-lg-2 col-xs-2">
                     {{ index }}
                 </div>
-                <div v-if="!students[index].edit" class="col-md-3">
+                <div v-if="!students[index].edit" class="col-lg-3 col-xs-5">
                     {{ student.name }}
                 </div>
-                <div v-else class="col-md-3">
+                <div v-else class="col-lg-3 col-xs-5">
                     <input type="text" v-model="studentEdit.name">
                 </div>
 
-                <div v-show="!students[index].edit" class="col-md-3">
+                <div v-show="!students[index].edit" class="col-lg-3 col-xs-5">
                     {{ student.last_name }}
                 </div>
-                <div v-show="students[index].edit"  class="col-md-3">
+                <div v-show="students[index].edit"  class="col-lg-3 col-xs-5">
                     <input type="text" v-model="studentEdit.last_name">
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-lg-3 col-xs-12">
                     <button type="button" class="btn btn-danger" v-on:click="remove(index)">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
@@ -67,6 +67,8 @@
             </div>
         </div>
 
+        <button class="btn btn-primary" @click="fetchData">Get data</button>
+
     </div>
 </template>
 
@@ -76,18 +78,31 @@
             return {
                 student: {name: '', last_name: '', edit: false},
                 studentEdit: {name: '', last_name: '', edit: false},
-                students: [
-                    {name: 'Yonatan', last_name: 'Valencia', edit: false},
-                    {name: 'Juanes', last_name: 'Celosa', edit: false},
-                    {name: 'Andres', last_name: 'Vizca', edit: false}
-                ]
+                students: []
             }
 
         },
         methods: {
+            fetchData() {
+                console.log('eo')
+              this.$http.get('users.json')
+                  .then( response => {
+                      return response.json();
+                  })
+                  .then( data => {
+                      this.students = Object.keys(data).map( key => {
+                          return Object.assign({guid: key}, data[key]);
+                      });
+                  })
+            },
             create: function(){
                 this.students.push(this.student);
-                this.student = {name: '', last_name: ''};
+                this.$http.post('users.json', this.student)
+                    then(() => {
+                        this.student = {name: '', last_name: '', edit: false}
+                    }, error => {
+                        console.log(error)
+                    })
             },
             remove: function(index){
                 this.students.splice(index, 1);

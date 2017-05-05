@@ -31,40 +31,40 @@
     <div class="container-stripped">
       <!--Header-->
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-lg-3 col-xs-2">
           ID
         </div>
-        <div class="col-md-3">
+        <div class="col-lg-3 col-xs-5">
           NAME
         </div>
-        <div class="col-md-3">
+        <div class="col-lg-3 col-xs-5">
           LAST NAME
         </div>
-        <div class="col-md-3">
+        <div class="col-lg-3 col-xs-12">
           ACTIONS
         </div>
       </div>
 
       <!--List-->
       <div class="row" v-for="(student, index) in students">
-        <div class="col-md-3">
+        <div class="col-lg-2 col-xs-2">
           {{ index }}
         </div>
-        <div v-if="!students[index].edit" class="col-md-3">
+        <div v-if="!students[index].edit" class="col-lg-3 col-xs-5">
           {{ student.name }}
         </div>
-        <div v-else class="col-md-3">
+        <div v-else class="col-lg-3 col-xs-5">
           <input type="text" v-model="studentEdit.name">
         </div>
 
-        <div v-show="!students[index].edit" class="col-md-3">
+        <div v-show="!students[index].edit" class="col-lg-3 col-xs-5">
           {{ student.last_name }}
         </div>
-        <div v-show="students[index].edit"  class="col-md-3">
+        <div v-show="students[index].edit"  class="col-lg-3 col-xs-5">
           <input type="text" v-model="studentEdit.last_name">
         </div>
 
-        <div class="col-md-3">
+        <div class="col-lg-3 col-xs-12">
           <button type="button" class="btn btn-danger" v-on:click="remove(index)">
             <span class="glyphicon glyphicon-trash"></span>
           </button>
