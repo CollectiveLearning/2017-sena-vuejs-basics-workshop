@@ -10,68 +10,81 @@
 <body>
 
 <div id="app">
-  <div class="container-stripped">
-    <!--Header-->
-    <div class="row">
-      <div class="col-md-3">
-        ID
+  <div class="container">
+    <h1>Users</h1>
+    <div class="panel panel-primary">
+      <!-- Default panel contents -->
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-2 text-right">Name:</div>
+          <div class="col-md-3"><input type="text" v-model="student.name"></div>
+          <div class="col-md-2 text-right">Last Name:</div>
+          <div class="col-md-3"><input type="text" v-model="student.last_name"></div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-default btn-sm" v-on:click="create">
+              <span class="glyphicon glyphicon-user">Add </span>
+            </button>
+          </div>
+        </div>      </div>
+    </div>
+
+    <div class="container-stripped">
+      <!--Header-->
+      <div class="row">
+        <div class="col-md-3">
+          ID
+        </div>
+        <div class="col-md-3">
+          NAME
+        </div>
+        <div class="col-md-3">
+          LAST NAME
+        </div>
+        <div class="col-md-3">
+          ACTIONS
+        </div>
       </div>
-      <div class="col-md-3">
-        NAME
-      </div>
-      <div class="col-md-3">
-        LAST NAME
-      </div>
-      <div class="col-md-3">
-        ACTIONS
+
+      <!--List-->
+      <div class="row" v-for="(student, index) in students">
+        <div class="col-md-3">
+          {{ index }}
+        </div>
+        <div v-if="!students[index].edit" class="col-md-3">
+          {{ student.name }}
+        </div>
+        <div v-else class="col-md-3">
+          <input type="text" v-model="studentEdit.name">
+        </div>
+
+        <div v-show="!students[index].edit" class="col-md-3">
+          {{ student.last_name }}
+        </div>
+        <div v-show="students[index].edit"  class="col-md-3">
+          <input type="text" v-model="studentEdit.last_name">
+        </div>
+
+        <div class="col-md-3">
+          <button type="button" class="btn btn-danger" v-on:click="remove(index)">
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+          <button type="button" class="btn btn-default" v-on:click="edit(index)" v-show="!students[index].edit">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </button>
+          <button type="button" class="btn btn-primary" v-on:click="editSave(index)" v-show="students[index].edit">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </button>
+        </div>
       </div>
     </div>
 
-    <!--List-->
-    <div class="row" v-for="(student, index) in students">
-      <div class="col-md-3">
-        {{ index }}
-      </div>
-      <div v-if="!students[index].edit" class="col-md-3">
-        {{ student.name }}
-      </div>
-      <div v-else class="col-md-3">
-        <input type="text" v-model="studentEdit.name">
-      </div>
-
-      <div v-show="!students[index].edit" class="col-md-3">
-        {{ student.last_name }}
-      </div>
-      <div v-show="students[index].edit"  class="col-md-3">
-        <input type="text" v-model="studentEdit.last_name">
-      </div>
-
-      <div class="col-md-3">
-        <button type="button" class="btn btn-danger" v-on:click="remove(index)">
-          <span class="glyphicon glyphicon-trash"></span>
-        </button>
-        <button type="button" class="btn btn-default" v-on:click="edit(index)" v-show="!students[index].edit">
-          <span class="glyphicon glyphicon-pencil"></span>
-        </button>
-        <button type="button" class="btn btn-primary" v-on:click="editSave(index)" v-show="students[index].edit">
-          <span class="glyphicon glyphicon-pencil"></span>
-        </button>
-      </div>
-    </div>
   </div>
 
+
+
+
   <div class="container">
-    <div class="row">
-      <div class="col-md-2">Name</div>
-      <div class="col-md-2"><input type="text" v-model="student.name"></div>
-      <div class="col-md-2">Last Name</div>
-      <div class="col-md-2"><input type="text" v-model="student.last_name"></div>
-      <div class="col-md-2">
-        <button type="button" class="btn btn-primary" v-on:click="create">
-          <span class="glyphicon glyphicon-user">Add </span>
-        </button>
-      </div>
-    </div>
+
   </div>
 
 
